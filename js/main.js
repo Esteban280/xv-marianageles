@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       speechUtterance.lang = 'es-ES';
       speechUtterance.rate = 0.85; // Elegant, aristocratic, slow dramatic tempo
       speechUtterance.pitch = 1.05; // Standard, clear female tone
-      speechUtterance.volume = 0.55; // Lower the voice volume a bit for a softer, more balanced mix
+      speechUtterance.volume = 0.50; // Lower the voice volume a bit for a softer, more balanced mix
 
       // Try to find a high-quality Spanish female voice
       const findVoice = () => {
