@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "Querido y gentil lector. " +
       "Se dice en los pasillos de la alta sociedad que un evento verdaderamente extraordinario se aproxima. " +
       "Con gran placer, me complace anunciar que la encantadora señorita María Ángeles Caro celebrará sus quince años, iniciando una nueva etapa llena de gracia y elegancia. " +
-      "Sería el mayor de los honores contar con su distinguida presencia en esta velada de música, encanto y celebración en compañía de su querido padre Orlando Caro. " +
+      "Sería el mayor de los honores contar con su distinguida presencia en esta velada de música, encanto y celebración en compañía de su querido padre Orlando Caro y Pilar Trujillo. " +
       "Se ruega puntual asistencia y su mejor porte, pues la noche promete recuerdos que serán comentados por mucho tiempo. " +
       "Atentamente, Lady Whistledown.";
 
