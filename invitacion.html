@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis XV Años — María Ángeles Caro</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Te invito a celebrar conmigo mis quince años. Conoce los detalles del evento, ubicación, itinerario y confirma tu asistencia.">
+  <meta name="author" content="María Ángeles Caro">
+  <meta property="og:title" content="Mis XV Años — María Ángeles Caro">
+  <meta property="og:description"
+    content="Acompáñame a celebrar este día tan especial. Conoce toda la información de la ceremonia y recepción aquí.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/quinceanera.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/quinceanera.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons for premium visual badges -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Background Music Audio Tag (Pachelbel's Canon in D) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/Birds%20of%20a%20Feather.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Pre-recorded Lady Whistledown Voiceover (Latin Spanish MP3) -->
+  <!-- Save your voiceover file as assets/audio/lady-whistledown.mp3 to play it here -->
+  <audio id="voiceover-audio" preload="auto">
+    <source src="assets/audio/lady-whistledown.mp3" type="audio/mp3">
+  </audio>
+
+
+  <!-- ============================================================
+       1. PRELOADER
+       ============================================================ -->
+  <div id="preloader" class="preloader">
+    <div class="preloader__heart">
+      <!-- Premium Ornamental Heart Icon -->
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+      </svg>
+    </div>
+    <div class="preloader__text">María Ángeles</div>
+  </div>
+
+
+  <!-- ============================================================
+       2. HERO SECTION / PORTADA
+       ============================================================ -->
+  <header id="hero" class="hero">
+    <!-- Particle System Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content">
+      <!-- Top Ornament -->
+      <div class="hero__ornament--top">
+        <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 0C55 10 75 10 100 10M50 0C45 10 25 10 0 10M50 0V20" stroke="var(--color-gold)" stroke-width="1.5"
+            stroke-linecap="round" />
+          <circle cx="50" cy="10" r="3" fill="var(--color-gold)" />
+          <circle cx="30" cy="10" r="1.5" fill="var(--color-gold)" />
+          <circle cx="70" cy="10" r="1.5" fill="var(--color-gold)" />
+        </svg>
+      </div>
+
+
+
+      <!-- Text Header Info -->
+      <span class="hero__subtitle"><i class="fa-solid fa-crown"
+          style="color: var(--color-gold); margin-right: 8px;"></i>Mis XV Años</span>
+      <h1 class="hero__name">María Ángeles</h1>
+      <span class="hero__lastname">Caro</span>
+
+      <p class="hero__date"><i class="fa-regular fa-calendar-days"
+          style="color: var(--color-gold); margin-right: 8px;"></i>15 de Agosto, 2026</p>
+
+      <!-- Bottom Ornament -->
+      <div class="hero__ornament--bottom">
+        <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 0C55 10 75 10 100 10M50 0C45 10 25 10 0 10M50 0V20" stroke="var(--color-gold)" stroke-width="1.5"
+            stroke-linecap="round" />
+          <circle cx="50" cy="10" r="3" fill="var(--color-gold)" />
+          <circle cx="30" cy="10" r="1.5" fill="var(--color-gold)" />
+          <circle cx="70" cy="10" r="1.5" fill="var(--color-gold)" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Animated Indicator scroll down -->
+    <a href="#invitation" class="hero__scroll-indicator" aria-label="Ir a la invitación">
+      <span>Desliza</span>
+    </a>
+  </header>
+
+  <!-- ============================================================
+       3. INVITATION MESSAGE SECTION (Lady Whistledown Style)
+       ============================================================ -->
+  <section id="invitation" class="section section--invitation">
+    <div class="container">
+      <div class="reveal reveal--visible">
+        <div class="section__title-icon"><i class="fa-solid fa-crown"></i></div>
+
+        <!-- Bridgerton Parchment Letter Scroll -->
+        <div class="parchment-letter mb-4">
+          <div class="parchment-letter__corner-ornament parchment-letter__corner-ornament--tl"></div>
+          <div class="parchment-letter__corner-ornament parchment-letter__corner-ornament--tr"></div>
+          <div class="parchment-letter__corner-ornament parchment-letter__corner-ornament--bl"></div>
+          <div class="parchment-letter__corner-ornament parchment-letter__corner-ornament--br"></div>
+
+          <div class="parchment-letter__header">
+            <h3>Boletín de la Alta Sociedad</h3>
+            <p class="parchment-letter__subtitle">De la pluma de Lady Whistledown</p>
+          </div>
+
+          <div class="parchment-letter__body">
+            <p id="lady-whistledown-text" class="invitation__text">
+              Querido y gentil lector:
+              <br><br>
+              Se dice en los pasillos de la alta sociedad que un evento verdaderamente extraordinario se aproxima...
+              <br><br>
+              Con gran placer, me complace anunciar que la encantadora señorita <span class="text-gold-gradient"
+                style="font-family: var(--font-serif); font-weight: 700; font-style: normal;">María Ángeles Caro</span>
+              celebrará sus quince años, iniciando una nueva etapa llena de gracia y elegancia.
+              <br><br>
+              Sería el mayor de los honores contar con su distinguida presencia en esta velada de música, encanto y
+              celebración en compañía de su querido padre <span
+                style="font-weight: 600; color: var(--color-dark); font-style: normal;">Orlando Caro</span>.
+              <br><br>
+              Se ruega puntual asistencia y su mejor porte, pues la noche promete recuerdos que serán comentados por
+              mucho tiempo...
+            </p>
+
+            <p class="parchment-letter__signature">
+              Atentamente,<br>
+              <strong class="emphasis" style="font-size: 1.6rem; color: var(--color-gold-dark);">Lady
+                Whistledown</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- Divider Ornament -->
+        <div class="ornament-divider ornament-divider--line">
+          <span>✦</span>
+        </div>
+
+        <div class="invitation__parents mt-4">
+          Con la bendición de mis padres
+        </div>
+        <div class="invitation__parent-names">
+          Orlando Caro & Pilar Trujillo
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section separator ornament -->
+  <div class="section-separator section-separator--dark">
+    <div class="section-separator__ornament">
+      <svg viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 10C120 10 140 0 200 0M100 10C80 10 60 0 0 0M100 10V20" stroke="var(--color-gold)" stroke-width="1"
+          opacity="0.4" />
+        <polygon points="100,5 105,10 100,15 95,10" fill="var(--color-gold)" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       4. COUNTDOWN TIMER SECTION
+       ============================================================ -->
+  <section id="countdown" class="section section--countdown">
+    <div class="container">
+      <div class="section__title-icon"><i class="fa-solid fa-crown"></i></div>
+      <h2 class="section__title section__title--light reveal">Solo Faltan</h2>
+
+      <div class="countdown__grid reveal reveal--scale" data-delay="1">
+        <!-- Days Card -->
+        <div class="countdown-card">
+          <div id="countdown-days" class="countdown-card__number">00</div>
+          <div class="countdown-card__label">Días</div>
+        </div>
+
+        <!-- Hours Card -->
+        <div class="countdown-card">
+          <div id="countdown-hours" class="countdown-card__number">00</div>
+          <div class="countdown-card__label">Horas</div>
+        </div>
+
+        <!-- Minutes Card -->
+        <div class="countdown-card">
+          <div id="countdown-minutes" class="countdown-card__number">00</div>
+          <div class="countdown-card__label">Minutos</div>
+        </div>
+
+        <!-- Seconds Card -->
+        <div class="countdown-card">
+          <div id="countdown-seconds" class="countdown-card__number">00</div>
+          <div class="countdown-card__label">Segundos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4.1. MINI GALLERY SECTION
+       ============================================================ -->
+  <section id="gallery" class="section section--gallery">
+    <div class="container">
+      <div class="section__title-icon"><i class="fa-solid fa-crown"></i></div>
+      <h2 class="section__title reveal">Mis Momentos</h2>
+
+      <div class="gallery__grid">
+        <div class="gallery__item reveal reveal--scale" data-delay="0">
+          <div class="gallery__card">
+            <img src="assets/images/quinceanera.jpg" alt="María Ángeles Caro 1">
+            <div class="gallery__overlay-text">✦ Elegancia ✦</div>
+          </div>
+        </div>
+        <div class="gallery__item reveal reveal--scale" data-delay="100">
+          <div class="gallery__card">
+            <img src="assets/images/quince5.jpeg" alt="María Ángeles Caro 2">
+            <div class="gallery__overlay-text">✦ Gracia ✦</div>
+          </div>
+        </div>
+        <div class="gallery__item reveal reveal--scale" data-delay="200">
+          <div class="gallery__card">
+            <img src="assets/images/quinceanera3.jpg" alt="María Ángeles Caro 3">
+            <div class="gallery__overlay-text">✦ Sueños ✦</div>
+          </div>
+        </div>
+        <div class="gallery__item reveal reveal--scale" data-delay="300">
+          <div class="gallery__card">
+            <img src="assets/images/quince8.jpeg" alt="María Ángeles Caro 4">
+            <div class="gallery__overlay-text">✦ Celebración ✦</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================
+       5. EVENT DETAILS SECTION
+       ============================================================ -->
+  <section id="event-details" class="section section--details">
+    <div class="container">
+      <div class="section__title-icon"><i class="fa-solid fa-crown"></i></div>
+      <h2 class="section__title section__title--light reveal">¿Cuándo y Dónde?</h2>
+
+      <div class="details__grid">
+        <!-- Card 1: Recepción -->
+        <div class="detail-card reveal reveal-center">
+          <div class="detail-card__icon">
+            <i class="fa-solid fa-glass-cheers"></i>
+          </div>
+          <h3 class="detail-card__title">Recepción de Gala</h3>
+          <p class="detail-card__info">
+            <strong>Lugar:</strong> Hacienda Casa de Josue<br>
+            <strong>Dirección:</strong> Calle 235 #80-02, Suba, Bogotá<br>
+            <strong>Tipo de traje: </strong>Formal<br>
+            <strong>Tipo de regalo: </strong>Lluvia de sobres<br><br>
+            <strong>Por favor, ten en cuenta que tu puntualidad es esencial para dar inicio a nuestro
+              evento.</strong><br><br>
+          </p>
+          <span class="detail-card__time"><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>05:30 PM</span>
+          <div class="detail-card__btn">
+            <a href="#map-section" class="btn btn--primary">
+              <i class="fa-solid fa-map-location-dot"></i> Cómo Llegar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. GOOGLE MAPS EMBED SECTION
+       ============================================================ -->
+  <section id="map-section" class="section section--map">
+    <div class="container">
+      <h2 class="section__title reveal">Ubicación del Evento</h2>
+
+      <div class="map__wrapper reveal reveal--scale">
+        <!-- Interactive Google Maps Frame targeting Autopista Norte KM 19, Chía, Cundinamarca -->
+        <iframe
+          src="https://maps.google.com/maps?q=Autopista%20Norte%20km%2019,%20Ch%C3%ADa,%20Cundinamarca&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Google Map - Ubicación de los XV de María Ángeles Caro">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section separator ornament -->
+  <div class="section-separator section-separator--light">
+    <div class="section-separator__ornament">
+      <svg viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 10C120 10 140 0 200 0M100 10C80 10 60 0 0 0M100 10V20" stroke="var(--color-gold)" stroke-width="1"
+          opacity="0.4" />
+        <polygon points="100,5 105,10 100,15 95,10" fill="var(--color-gold)" />
+      </svg>
+    </div>
+  </div>
+
+
+
+  <!-- ============================================================
+       8. DRESS CODE SECTION
+       ============================================================ -->
+  <section id="dress-code" class="section section--dresscode">
+    <div class="container">
+      <div class="section__title-icon"><i class="fa-solid fa-crown"></i></div>
+      <h2 class="section__title section__title--light reveal">Código de Vestimenta</h2>
+
+      <div class="dresscode__content reveal reveal--scale">
+        <div class="dresscode__label">Traje Formal</div>
+
+        <p class="dresscode__note">
+          Para que todos luzcamos radiantes y armónicos en esta gran velada, te sugerimos vestir de etiqueta formal.
+        </p>
+
+        <!-- Vector Silhouettes for Dress Code -->
+        <div class="dresscode__silhouettes">
+          <div class="dresscode__silhouette-item">
+            <img class="dresscode__icon-img" src="assets/images/hombre.png" alt="Hombres: Traje / Smoking" width="80"
+              height="80">
+            <span>Hombres: Traje / Smoking</span>
+          </div>
+          <div class="dresscode__silhouette-item">
+            <img class="dresscode__icon-img" src="assets/images/mujer.png" alt="Mujeres: Vestido de Gala" width="80"
+              height="80">
+            <span>Mujeres: Vestido de Gala</span>
+          </div>
+        </div>
+
+        <!-- Suggested colors swatches -->
+        <div class="dresscode__colors">
+          <div class="dresscode__color-swatch dresscode__color-swatch--tooltip" style="background-color: #0F2C59;"
+            data-color="Azul Elegante"></div>
+          <div class="dresscode__color-swatch dresscode__color-swatch--tooltip" style="background-color: #9e7e12;"
+            data-color="Dorado Noche"></div>
+          <div class="dresscode__color-swatch dresscode__color-swatch--tooltip" style="background-color: #FFF5E6;"
+            data-color="Champagne"></div>
+        </div>
+
+        <p class="dresscode__note dresscode__note--warn">
+          <i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px;"></i>Nota: En honor a la quinceañera,
+          por favor evitar el uso de vestidos blancos o marfil.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section separator ornament -->
+  <div class="section-separator section-separator--light">
+    <div class="section-separator__ornament">
+      <svg viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 10C120 10 140 0 200 0M100 10C80 10 60 0 0 0M100 10V20" stroke="var(--color-gold)" stroke-width="1"
+          opacity="0.4" />
+        <polygon points="100,5 105,10 100,15 95,10" fill="var(--color-gold)" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       9. RSVP / CONFIRMATION SECTION
+       ============================================================ -->
+  <section id="rsvp" class="section section--rsvp">
+    <div class="container">
+      <div class="section__title-icon"><i class="fa-solid fa-crown"></i></div>
+      <h2 class="section__title reveal">Confirmación de Asistencia</h2>
+
+      <div class="rsvp__card reveal reveal--scale">
+        <p class="rsvp__text">
+          Tu presencia es el mejor regalo para mí en esta noche tan esperada. Por favor confirma tu asistencia antes del
+          1 de agosto de 2026.
+        </p>
+
+        <!-- Button trigger WhatsApp with formatted text -->
+        <a href="https://wa.me/573154664475?text=Hola!%20Confirmo%20mi%20asistencia%20al%20evento%20de%20los%20XV%20de%20Maria%20Angeles%20Caro."
+          target="_blank" class="btn btn--primary btn--lg btn--glow">
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Confirmar Asistencia
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10. FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer__hearts">
+      <i class="fa-solid fa-heart"></i>
+      <i class="fa-solid fa-heart" style="font-size: 1.2rem; margin: 0 4px;"></i>
+      <i class="fa-solid fa-heart"></i>
+    </div>
+
+    <div class="footer__script">Te espero para celebrar juntos.</div>
+
+    <p>&copy; 2026 Mis XV Años — María Ángeles Caro. Todos los derechos reservados.</p>
+    <p style="margin-top: 8px; font-size: 0.7rem; opacity: 0.6;">Hecho con amor por Ing. Esteban Boada para esta noche
+      inolvidable. <a
+        href="https://wa.me/573124154954?text=Hola!%20Me%20gustaria%20que%20me%20ayudes%20a%20dise%C3%B1ar%20una%20pagina%20web%20para%20una%20invitacion%20virtual."
+        target="_blank" style="text-decoration: underline; font-weight: 600; margin-left: 4px;">Cotizar aquí una pagina
+        Web</a>
+    </p>
+  </footer>
+
+  <!-- Floating Music Toggle Control Button -->
+  <button id="floating-music-btn" class="floating-music-btn" aria-label="Reproducir / Pausar Música">
+    <i id="music-icon" class="fa-solid fa-volume-xmark"></i>
+    <span class="music-wave-bars">
+      <span class="music-wave-bar"></span>
+      <span class="music-wave-bar"></span>
+      <span class="music-wave-bar"></span>
+      <span class="music-wave-bar"></span>
+    </span>
+  </button>
+
+  <!-- Main JavaScript File -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
