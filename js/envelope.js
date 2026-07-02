@@ -8,22 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     openBtn.addEventListener('click', () => {
       // Set sessionStorage flag so the music/speech autoplays on the main page
       sessionStorage.setItem('playMusic', 'true');
-
-      // Create the golden circle transition overlay dynamically
-      const goldOverlay = document.createElement('div');
-      goldOverlay.className = 'gold-transition-overlay';
-      document.body.appendChild(goldOverlay);
-
-      // Force browser reflow to ensure the transition is animated
-      void goldOverlay.offsetWidth;
-
-      // Expand the golden circle across the screen
-      goldOverlay.classList.add('active');
-
-      // Redirect to the main invitation details page after 800ms (matching the CSS transition)
-      setTimeout(() => {
-        window.location.href = 'invitacion.html';
-      }, 800);
+      window.location.href = 'invitacion.html?v=2';
     });
   }
 

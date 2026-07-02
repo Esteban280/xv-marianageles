@@ -9,12 +9,12 @@
    ---------------------------------------------------------- */
 :root {
   /* ── Blues ── */
-  --color-primary: #1B5ECF;
-  /* Vibrant Sapphire Blue */
-  --color-primary-dark: #15418F;
-  /* Lighter Royal Dark Blue */
-  --color-primary-light: #6195ED;
-  /* Luminous Cornflower Blue */
+  --color-primary: #081537;
+  /* Deep Midnight Blue (formerly Vibrant Sapphire Blue #1B5ECF) */
+  --color-primary-dark: #030a1c;
+  /* Darker Midnight Blue (formerly #15418F) */
+  --color-primary-light: #162f6d;
+  /* Lighter Midnight Accent (formerly Luminous Cornflower Blue #6195ED) */
 
   /* ── Golds ── */
   --color-gold: #D4AF37;
@@ -27,17 +27,17 @@
   /* Cool off-white */
   --color-cream: #EBF1F7;
   /* Cool light blue/gray cream */
-  --color-dark: #122A5E;
+  --color-dark: #081537;
   /* Rich deep royal instead of navy midnight */
-  --color-dark-alt: #1B3B80;
+  --color-dark-alt: #0c1f4e;
   /* Brighter secondary dark */
 
   /* ── Text ── */
-  --color-text: #122A5E;
+  --color-text: #081537;
   --color-text-light: #FFFFFF;
 
   /* ── Overlay ── */
-  --color-overlay: rgba(18, 42, 94, 0.7);
+  --color-overlay: rgba(8, 21, 55, 0.7);
 
   /* ── Fonts ── */
   --font-script: 'Great Vibes', cursive;
@@ -542,7 +542,7 @@ html {
   position: relative;
   background: linear-gradient(to bottom,
       rgba(18, 42, 94, 0.7) 0%,
-      rgba(18, 42, 94, 0.85) 100%), url('../assets/images/quinceanera3.jpg');
+      rgba(18, 42, 94, 0.85) 100%), url('../assets/images/quinceanera2.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2407,7 +2407,7 @@ html {
   width: 150vmax;
   height: 150vmax;
   border-radius: 50%;
-  background: radial-gradient(circle, #F0D78C 0%, #D4AF37 50%, #B8860B 100%);
+  background: radial-gradient(circle, #162f6d 0%, #081537 70%, #030a1c 100%);
   z-index: 10200;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
@@ -2652,6 +2652,163 @@ html {
 
 .section--dresscode .dresscode__icon-svg line {
   stroke: var(--color-gold-light) !important;
+}
+
+/* ── Lightbox Gallery Modal ── */
+.gallery__card {
+  cursor: pointer;
+}
+
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 25, 47, 0.95);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  backdrop-filter: blur(8px);
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-modal__content {
+  position: relative;
+  max-width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-modal__img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 3px solid var(--color-gold);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.25);
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lightbox-modal.active .lightbox-modal__img {
+  transform: scale(1);
+}
+
+.lightbox-modal__caption {
+  font-family: var(--font-serif);
+  color: var(--color-gold-light);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  margin-top: 15px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-modal__close {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  font-size: 2.2rem;
+  cursor: pointer;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  outline: none;
+}
+
+.lightbox-modal__close:hover {
+  color: var(--color-gold);
+  transform: scale(1.1);
+}
+
+/* Hide scrollbar when lightbox is open */
+body.lightbox-open {
+  overflow: hidden !important;
+}
+
+.lightbox-modal__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  font-size: 3rem;
+  padding: 15px;
+  cursor: pointer;
+  z-index: 100000;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  outline: none;
+  user-select: none;
+}
+
+.lightbox-modal__arrow:hover {
+  color: var(--color-gold);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.lightbox-modal__arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.lightbox-modal__arrow--prev {
+  left: -80px;
+}
+
+.lightbox-modal__arrow--next {
+  right: -80px;
+}
+
+/* Responsiveness for arrows */
+@media (max-width: 900px) {
+  .lightbox-modal__arrow--prev {
+    left: -60px;
+  }
+  .lightbox-modal__arrow--next {
+    right: -60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lightbox-modal__arrow {
+    font-size: 2.2rem;
+    padding: 10px;
+  }
+  .lightbox-modal__arrow--prev {
+    left: 15px;
+    background: rgba(10, 25, 47, 0.5);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  .lightbox-modal__arrow--next {
+    right: 15px;
+    background: rgba(10, 25, 47, 0.5);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  .lightbox-modal__arrow--prev:hover,
+  .lightbox-modal__arrow--next:hover {
+    transform: scale(1.1);
+  }
 }
 
 /* ----------------------------------------------------------

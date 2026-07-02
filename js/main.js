@@ -30,29 +30,37 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const startTime = performance.now();
+
     const hidePreloader = () => {
-      preloader.classList.add('preloader--hidden');
+      const elapsed = performance.now() - startTime;
+      const minDuration = 2000; // Enforce minimum preloader duration of 2 seconds
+      const delay = Math.max(0, minDuration - elapsed);
 
-      let dispatched = false;
-      const done = () => {
-        if (dispatched) return;
-        dispatched = true;
-        preloader.style.display = 'none';
-        document.dispatchEvent(new CustomEvent('preloaderHidden'));
-      };
+      setTimeout(() => {
+        preloader.classList.add('preloader--hidden');
 
-      // After CSS transition ends, remove from flow completely
-      const onTransitionEnd = () => {
-        done();
-        preloader.removeEventListener('transitionend', onTransitionEnd);
-      };
-      preloader.addEventListener('transitionend', onTransitionEnd);
+        let dispatched = false;
+        const done = () => {
+          if (dispatched) return;
+          dispatched = true;
+          preloader.style.display = 'none';
+          document.dispatchEvent(new CustomEvent('preloaderHidden'));
+        };
 
-      // Safety net: force hide even if transitionend never fires
-      setTimeout(done, 1500);
+        // After CSS transition ends, remove from flow completely
+        const onTransitionEnd = () => {
+          done();
+          preloader.removeEventListener('transitionend', onTransitionEnd);
+        };
+        preloader.addEventListener('transitionend', onTransitionEnd);
+
+        // Safety net: force hide even if transitionend never fires
+        setTimeout(done, 1500);
+      }, delay);
     };
 
-    // Wait for all assets, but cap at 3 seconds
+    // Wait for all assets, but cap at 6 seconds safety net
     let loaded = false;
     const markLoaded = () => {
       if (loaded) return;
@@ -61,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('load', markLoaded);
-    setTimeout(markLoaded, 3000);
+    setTimeout(markLoaded, 6000);
   };
 
   /* ----------------------------------------------------------
@@ -71,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const envelopeOverlay = document.getElementById('envelope-overlay');
     const openBtn = document.getElementById('open-envelope-btn');
     const bgMusic = document.getElementById('bg-music');
+    const voiceoverAudio = document.getElementById('voiceover-audio');
     const musicBtn = document.getElementById('floating-music-btn');
     const musicIcon = document.getElementById('music-icon');
 
@@ -84,12 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Lady Whistledown Spanish Voiceover Script
     const WHISTLEDOWN_SCRIPT = 
-      "Querido y gentil lector. " +
-      "Se dice en los pasillos de la alta sociedad que un evento verdaderamente extraordinario se aproxima. " +
-      "Con gran placer, me complace anunciar que la encantadora señorita María Ángeles Caro celebrará sus quince años, iniciando una nueva etapa llena de gracia y elegancia. " +
-      "Sería el mayor de los honores contar con su distinguida presencia en esta velada de música, encanto y celebración en compañía de su querido padre Orlando Caro y Pilar Trujillo. " +
-      "Se ruega puntual asistencia y su mejor porte, pues la noche promete recuerdos que serán comentados por mucho tiempo. " +
-      "Atentamente, Lady Whistledown.";
+      "Querido y gentil lector, los murmullos más refinados de la exquisita comunidad confirman que se aproxima un acontecimiento imposible de ignorar. " +
+      "Se dice con absoluta certeza que la señorita María Ángeles celebrará un año más de gracia, encanto y distinción en un evento que promete ser el más comentado de la temporada. " +
+      "Como es costumbre entre quienes conocen el verdadero arte de celebrar, no permitirá que tan distinguida fecha pase desapercibida. " +
+      "Será una velada donde la música y las conversaciones se entrelazarán bajo un mismo techo, y donde cada invitado tendrá el privilegio de ser testigo de un cumpleaños digno de las más memorables. " +
+      "Con la acostumbrada elegancia y el más absoluto conocimiento de los secretos mejor guardados, Lady Whistledown.";
 
     // Play Background Music
     const playMusic = () => {
@@ -118,6 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.speechSynthesis) {
           window.speechSynthesis.cancel();
         }
+        if (voiceoverAudio) {
+          voiceoverAudio.pause();
+          voiceoverAudio.currentTime = 0;
+        }
       } else {
         playMusic();
       }
@@ -125,69 +137,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Lady Whistledown Speech Voiceover Function
     const speakVoiceover = () => {
-      if (!('speechSynthesis' in window)) {
-        console.warn("Speech Synthesis not supported in this browser.");
-        return;
-      }
       if (hasVoiceoverStarted) return;
       hasVoiceoverStarted = true;
 
-      // Cancel any ongoing speech
-      window.speechSynthesis.cancel();
-
-      speechUtterance = new SpeechSynthesisUtterance(WHISTLEDOWN_SCRIPT);
-      speechUtterance.lang = 'es-ES';
-      speechUtterance.rate = 0.85; // Elegant, aristocratic, slow dramatic tempo
-      speechUtterance.pitch = 1.05; // Standard, clear female tone
-      speechUtterance.volume = 0.50; // Lower the voice volume a bit for a softer, more balanced mix
-
-      // Try to find a high-quality Spanish female voice
-      const findVoice = () => {
-        const voices = window.speechSynthesis.getVoices();
-        // Look for common high quality female voices in Spanish
-        const preferredVoices = [
-          'monica', 'paulina', 'sabina', 'helena', 'elena', 'google español', 'es-es', 'es-co', 'es-la'
-        ];
+      const playAudioFile = () => {
+        if (!voiceoverAudio) return Promise.reject("Audio element not found");
+        voiceoverAudio.currentTime = 0;
+        voiceoverAudio.volume = 0.9;
         
-        let selectedVoice = null;
+        // Duck background music volume during speech voiceover
+        bgMusic.volume = 0.1;
+        
+        voiceoverAudio.onended = () => {
+          bgMusic.volume = 0.35;
+        };
+        voiceoverAudio.onerror = () => {
+          console.warn("Voiceover file failed to load/play, falling back to Speech Synthesis");
+          bgMusic.volume = 0.35;
+          speakSynthesisFallback();
+        };
 
-        // First look for preferred female voices
-        for (const pref of preferredVoices) {
-          selectedVoice = voices.find(v => v.name.toLowerCase().includes(pref) && v.lang.toLowerCase().startsWith('es'));
-          if (selectedVoice) break;
+        return voiceoverAudio.play();
+      };
+
+      const speakSynthesisFallback = () => {
+        if (!('speechSynthesis' in window)) {
+          console.warn("Speech Synthesis not supported in this browser.");
+          return;
+        }
+        // Cancel any ongoing speech
+        window.speechSynthesis.cancel();
+
+        speechUtterance = new SpeechSynthesisUtterance(WHISTLEDOWN_SCRIPT);
+        speechUtterance.lang = 'es-ES';
+        speechUtterance.rate = 0.85; // Elegant, aristocratic, slow dramatic tempo
+        speechUtterance.pitch = 1.05; // Standard, clear female tone
+        speechUtterance.volume = 0.55; 
+
+        // Try to find a high-quality Spanish female voice
+        const findVoice = () => {
+          const voices = window.speechSynthesis.getVoices();
+          const preferredVoices = [
+            'monica', 'paulina', 'sabina', 'helena', 'elena', 'google español', 'es-es', 'es-co', 'es-la'
+          ];
+          
+          let selectedVoice = null;
+          for (const pref of preferredVoices) {
+            selectedVoice = voices.find(v => v.name.toLowerCase().includes(pref) && v.lang.toLowerCase().startsWith('es'));
+            if (selectedVoice) break;
+          }
+          if (!selectedVoice) {
+            selectedVoice = voices.find(v => v.lang.toLowerCase().startsWith('es'));
+          }
+          if (selectedVoice) {
+            speechUtterance.voice = selectedVoice;
+          }
+        };
+
+        findVoice();
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+          window.speechSynthesis.onvoiceschanged = findVoice;
         }
 
-        // Fallback: any spanish voice
-        if (!selectedVoice) {
-          selectedVoice = voices.find(v => v.lang.toLowerCase().startsWith('es'));
-        }
+        // Duck background music volume during speech voiceover
+        speechUtterance.onstart = () => {
+          bgMusic.volume = 0.15;
+        };
 
-        if (selectedVoice) {
-          speechUtterance.voice = selectedVoice;
-        }
+        speechUtterance.onend = () => {
+          bgMusic.volume = 0.35;
+        };
+
+        speechUtterance.onerror = () => {
+          bgMusic.volume = 0.35;
+        };
+
+        // Speak the Lady Whistledown message
+        window.speechSynthesis.speak(speechUtterance);
       };
 
-      // Voices are loaded asynchronously in some browsers
-      findVoice();
-      if (window.speechSynthesis.onvoiceschanged !== undefined) {
-        window.speechSynthesis.onvoiceschanged = findVoice;
-      }
-
-      // Duck background music volume during speech voiceover
-      speechUtterance.onstart = () => {
-        bgMusic.volume = 0.15;
-      };
-
-      speechUtterance.onend = () => {
-        bgMusic.volume = 0.35;
-      };
-
-      speechUtterance.onerror = () => {
-        bgMusic.volume = 0.35;
-      };
-
-      // Speak the Lady Whistledown message
-      window.speechSynthesis.speak(speechUtterance);
+      playAudioFile().catch(err => {
+        console.warn("Voiceover play blocked or failed, falling back to Speech Synthesis:", err);
+        speakSynthesisFallback();
+      });
     };
 
     const startAudioFlow = () => {
@@ -669,6 +701,123 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ----------------------------------------------------------
+   *  11. LIGHTBOX GALLERY MODAL
+   * -------------------------------------------------------- */
+  const initLightbox = () => {
+    const galleryCards = document.querySelectorAll('.gallery__card');
+    if (!galleryCards.length) return;
+
+    let currentIndex = 0;
+
+    // Create modal elements dynamically
+    const modal = document.createElement('div');
+    modal.className = 'lightbox-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-label', 'Vista ampliada de la foto');
+
+    modal.innerHTML = `
+      <div class="lightbox-modal__content">
+        <button class="lightbox-modal__close" aria-label="Cerrar vista">&times;</button>
+        <button class="lightbox-modal__arrow lightbox-modal__arrow--prev" aria-label="Foto anterior">&#10094;</button>
+        <img class="lightbox-modal__img" src="" alt="">
+        <button class="lightbox-modal__arrow lightbox-modal__arrow--next" aria-label="Foto siguiente">&#10095;</button>
+        <div class="lightbox-modal__caption"></div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const modalImg = modal.querySelector('.lightbox-modal__img');
+    const modalCaption = modal.querySelector('.lightbox-modal__caption');
+    const closeBtn = modal.querySelector('.lightbox-modal__close');
+    const prevBtn = modal.querySelector('.lightbox-modal__arrow--prev');
+    const nextBtn = modal.querySelector('.lightbox-modal__arrow--next');
+
+    const updateModalContent = (index) => {
+      currentIndex = index;
+      const card = galleryCards[currentIndex];
+      const img = card.querySelector('img');
+      const textEl = card.querySelector('.gallery__overlay-text');
+      
+      if (!img) return;
+
+      modalImg.src = img.src;
+      modalImg.alt = img.alt || 'Foto ampliada';
+      modalCaption.textContent = textEl ? textEl.textContent.replace(/✦/g, '').trim() : '';
+    };
+
+    const openModal = (index) => {
+      updateModalContent(index);
+      document.body.classList.add('lightbox-open');
+      modal.classList.add('active');
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      document.body.classList.remove('lightbox-open');
+      // Clear src after transition to avoid flash on next open
+      setTimeout(() => {
+        if (!modal.classList.contains('active')) {
+          modalImg.src = '';
+          modalImg.alt = '';
+        }
+      }, 400);
+    };
+
+    const showNext = () => {
+      const nextIndex = (currentIndex + 1) % galleryCards.length;
+      updateModalContent(nextIndex);
+    };
+
+    const showPrev = () => {
+      const prevIndex = (currentIndex - 1 + galleryCards.length) % galleryCards.length;
+      updateModalContent(prevIndex);
+    };
+
+    // Attach click events to cards
+    galleryCards.forEach((card, index) => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(index);
+      });
+    });
+
+    // Close on close button click
+    closeBtn.addEventListener('click', closeModal);
+
+    // Navigation arrow listeners
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPrev();
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showNext();
+    });
+
+    // Close on clicking outside the image
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.classList.contains('lightbox-modal__content')) {
+        closeModal();
+      }
+    });
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('active')) return;
+
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowRight') {
+        showNext();
+      } else if (e.key === 'ArrowLeft') {
+        showPrev();
+      }
+    });
+  };
+
+  /* ----------------------------------------------------------
    *  INITIALISE EVERYTHING
    * -------------------------------------------------------- */
   initPreloader();
@@ -682,5 +831,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollIndicator();
   initCounterAnimation();
   initTimeline();
+  initLightbox();
 });
 

@@ -32,6 +32,267 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Custom Hero Split Layout Styles -->
+  <style>
+    .hero {
+      display: block !important;
+      position: relative;
+    }
+
+    .hero__content-top {
+      position: absolute;
+      top: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 700px;
+      z-index: 10;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .hero__content-bottom {
+      position: absolute;
+      bottom: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 700px;
+      z-index: 10;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .hero__name-top {
+      font-family: var(--font-script);
+      font-size: clamp(2.8rem, 9vw, 4.8rem);
+      color: var(--color-white);
+      line-height: 1.1;
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.4), 0 2px 10px rgba(0, 0, 0, 0.6);
+      margin: 10px 0 0;
+      animation: fadeInUp 1.2s ease-out 0.4s both;
+    }
+
+    .hero__title-bottom {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 7vw, 3.8rem);
+      color: var(--color-gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 2px 10px rgba(0, 0, 0, 0.7);
+      margin: 0 0 10px;
+      animation: fadeInUp 1.2s ease-out 0.6s both;
+    }
+
+    .hero__date-bottom {
+      font-family: var(--font-body-serif);
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      color: var(--color-white);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin: 0 0 15px;
+      opacity: 0.95;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      animation: fadeInUp 1.2s ease-out 0.8s both;
+    }
+
+    .hero__ornament-top {
+      width: clamp(140px, 35vw, 240px);
+      height: auto;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+      animation: fadeInDown 1.2s ease-out both;
+    }
+
+    .hero__ornament-bottom {
+      width: clamp(140px, 35vw, 240px);
+      height: auto;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+      transform: rotate(180deg);
+      animation: fadeInUp 1.2s ease-out 1s both;
+    }
+
+    .hero__scroll-indicator {
+      z-index: 12 !important;
+    }
+
+    /* Keep background image focal point looking great */
+    @media (min-width: 768px) {
+      .hero__content-top {
+        top: 10%;
+      }
+
+      .hero__content-bottom {
+        bottom: 10%;
+      }
+    }
+
+    /* Event Details Grid Overrides */
+    .details__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .detail-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    .detail-card__info {
+      flex-grow: 1;
+    }
+
+    .detail-card__time {
+      font-size: clamp(1.4rem, 4.5vw, 1.8rem) !important;
+      font-weight: 700 !important;
+      color: var(--color-gold-light) !important;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.3) !important;
+      padding-bottom: 6px !important;
+      margin: 15px 0 !important;
+    }
+
+    .detail-card--minimal {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      padding: 40px !important;
+    }
+
+    .detail-card__minimal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .detail-card__icon--no-circle {
+      font-size: 4rem !important;
+      color: var(--color-gold-light) !important;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.45) !important;
+      margin-bottom: 20px !important;
+      animation: floatIcon 3s infinite ease-in-out;
+    }
+
+    @keyframes floatIcon {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .detail-card__minimal-label {
+      font-family: var(--font-sans);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold) !important;
+      margin: 10px 0 0 !important;
+      text-shadow: 0 0 12px rgba(212, 175, 55, 0.35) !important;
+    }
+
+    .detail-card__title--large {
+      font-size: 1.8rem !important;
+      color: var(--color-white) !important;
+      margin: 5px 0 0 !important;
+      letter-spacing: 0.05em !important;
+      font-family: var(--font-serif) !important;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    @media (min-width: 768px) {
+      .details__grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        max-width: 900px !important;
+        gap: 30px !important;
+      }
+    }
+
+    /* Preloader Overrides */
+    .preloader {
+      background-image: linear-gradient(rgba(8, 21, 55, 0.75), rgba(8, 21, 55, 0.75)), url('assets/images/quinceanera3.jpg') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+
+    .preloader__heart {
+      position: relative;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 110px !important;
+      height: 110px !important;
+      color: #081537 !important;
+    }
+
+    .preloader__heart svg {
+      width: 60px !important;
+      height: 60px !important;
+      fill: #081537 !important;
+      animation: heartbeat 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(8, 21, 55, 0.4));
+      background: rgba(255, 255, 255, 0.9) !important;
+      border-radius: 50% !important;
+      padding: 12px !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+      z-index: 2 !important;
+    }
+
+    /* Golden loading spinner ring surrounding the blue heart */
+    .preloader__heart::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 3px solid rgba(212, 175, 55, 0.15);
+      /* Light gold track */
+      border-top: 3px solid var(--color-gold);
+      /* Solid gold spinner line */
+      border-radius: 50%;
+      animation: spinPreloader 1.5s linear infinite;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+    }
+
+    @keyframes spinPreloader {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .preloader__text {
+      display: none !important;
+      /* Hide loading name so only the heart is visible */
+    }
+  </style>
 </head>
 
 <body>
@@ -42,9 +303,8 @@
   </audio>
 
   <!-- Pre-recorded Lady Whistledown Voiceover (Latin Spanish MP3) -->
-  <!-- Save your voiceover file as assets/audio/lady-whistledown.mp3 to play it here -->
   <audio id="voiceover-audio" preload="auto">
-    <source src="assets/audio/lady-whistledown.mp3" type="audio/mp3">
+    <source src="assets/sound/Invitacion-XV.mp3" type="audio/mp3">
   </audio>
 
 
@@ -72,9 +332,9 @@
 
     <div class="hero__overlay"></div>
 
-    <div class="hero__content">
-      <!-- Top Ornament -->
-      <div class="hero__ornament--top">
+    <!-- Top Content: centered at the top of the screen -->
+    <div class="hero__content-top">
+      <div class="hero__ornament-top">
         <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M50 0C55 10 75 10 100 10M50 0C45 10 25 10 0 10M50 0V20" stroke="var(--color-gold)" stroke-width="1.5"
             stroke-linecap="round" />
@@ -83,20 +343,14 @@
           <circle cx="70" cy="10" r="1.5" fill="var(--color-gold)" />
         </svg>
       </div>
+      <h1 class="hero__name-top">María Ángeles</h1>
+    </div>
 
-
-
-      <!-- Text Header Info -->
-      <span class="hero__subtitle"><i class="fa-solid fa-crown"
-          style="color: var(--color-gold); margin-right: 8px;"></i>Mis XV Años</span>
-      <h1 class="hero__name">María Ángeles</h1>
-      <span class="hero__lastname">Caro</span>
-
-      <p class="hero__date"><i class="fa-regular fa-calendar-days"
-          style="color: var(--color-gold); margin-right: 8px;"></i>15 de Agosto, 2026</p>
-
-      <!-- Bottom Ornament -->
-      <div class="hero__ornament--bottom">
+    <!-- Bottom Content: centered at the bottom of the screen -->
+    <div class="hero__content-bottom">
+      <h2 class="hero__title-bottom">MIS XV AÑOS</h2>
+      <p class="hero__date-bottom">15 AGOSTO 2026</p>
+      <div class="hero__ornament-bottom">
         <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M50 0C55 10 75 10 100 10M50 0C45 10 25 10 0 10M50 0V20" stroke="var(--color-gold)" stroke-width="1.5"
             stroke-linecap="round" />
@@ -129,7 +383,7 @@
           <div class="parchment-letter__corner-ornament parchment-letter__corner-ornament--br"></div>
 
           <div class="parchment-letter__header">
-            <h3>Boletín de la Alta Sociedad</h3>
+            <h3>Boletín para la distinguida comunidad</h3>
             <p class="parchment-letter__subtitle">De la pluma de Lady Whistledown</p>
           </div>
 
@@ -137,18 +391,20 @@
             <p id="lady-whistledown-text" class="invitation__text">
               Querido y gentil lector:
               <br><br>
-              Se dice en los pasillos de la alta sociedad que un evento verdaderamente extraordinario se aproxima...
+              Se dice en los pasillos de nuestra querida comunidad que un evento verdaderamente extraordinario se
+              aproxima...
               <br><br>
-              Con gran placer, me complace anunciar que la encantadora señorita <span class="text-gold-gradient"
-                style="font-family: var(--font-serif); font-weight: 700; font-style: normal;">María Ángeles Caro</span>
-              celebrará sus quince años, iniciando una nueva etapa llena de gracia y elegancia.
+              Los murmullos más refinados de la exquisita comunidad confirman que se aproxima un acontecimiento
+              imposible de ignorar. Se dice con absoluta certeza que la señorita <strong class="emphasis"
+                style="font-size: 1.6rem; color: var(--color-gold-dark);">María Ángeles</strong> celebrará un año más de
+              gracia, encanto y distinción en un evento que promete ser el más comentado de la temporada.
               <br><br>
-              Sería el mayor de los honores contar con su distinguida presencia en esta velada de música, encanto y
-              celebración en compañía de su querido padre <span
-                style="font-weight: 600; color: var(--color-dark); font-style: normal;">Orlando Caro y Pilar Trujillo</span>.
+              Como es costumbre entre quienes conocen el verdadero arte de celebrar, no permitirá que tan distinguida
+              fecha pase desapercibida. Será una velada donde la música y las conversaciones se entrelazarán bajo un
+              mismo techo, y donde cada invitado tendrá el privilegio de ser testigo de un cumpleaños digno de las más
+              memorables.
               <br><br>
-              Se ruega puntual asistencia y su mejor porte, pues la noche promete recuerdos que serán comentados por
-              mucho tiempo...
+              Con la acostumbrada elegancia y el más absoluto conocimiento de los secretos mejor guardados,
             </p>
 
             <p class="parchment-letter__signature">
@@ -232,25 +488,25 @@
       <div class="gallery__grid">
         <div class="gallery__item reveal reveal--scale" data-delay="0">
           <div class="gallery__card">
-            <img src="assets/images/quinceanera.jpg" alt="María Ángeles Caro 1">
+            <img src="assets/images/IMG_0401.jpg" alt="María Ángeles Caro 1">
             <div class="gallery__overlay-text">✦ Elegancia ✦</div>
           </div>
         </div>
         <div class="gallery__item reveal reveal--scale" data-delay="100">
           <div class="gallery__card">
-            <img src="assets/images/quince5.jpeg" alt="María Ángeles Caro 2">
+            <img src="assets/images/IMG_0409.jpg" alt="María Ángeles Caro 2">
             <div class="gallery__overlay-text">✦ Gracia ✦</div>
           </div>
         </div>
         <div class="gallery__item reveal reveal--scale" data-delay="200">
           <div class="gallery__card">
-            <img src="assets/images/quinceanera3.jpg" alt="María Ángeles Caro 3">
+            <img src="assets/images/IMG_0412.jpg" alt="María Ángeles Caro 3">
             <div class="gallery__overlay-text">✦ Sueños ✦</div>
           </div>
         </div>
         <div class="gallery__item reveal reveal--scale" data-delay="300">
           <div class="gallery__card">
-            <img src="assets/images/quince8.jpeg" alt="María Ángeles Caro 4">
+            <img src="assets/images/IMG_0212.jpg" alt="María Ángeles Caro 4">
             <div class="gallery__overlay-text">✦ Celebración ✦</div>
           </div>
         </div>
@@ -277,17 +533,26 @@
           <h3 class="detail-card__title">Recepción de Gala</h3>
           <p class="detail-card__info">
             <strong>Lugar:</strong> Hacienda Casa de Josue<br>
-            <strong>Dirección:</strong> Calle 235 #80-02, Suba, Bogotá<br>
-            <strong>Tipo de traje: </strong>Formal<br>
-            <strong>Tipo de regalo: </strong>Lluvia de sobres<br><br>
+            <strong>Dirección:</strong> Calle 235 #80-02, Suba, Bogotá<br><br>
             <strong>Por favor, ten en cuenta que tu puntualidad es esencial para dar inicio a nuestro
-              evento.</strong><br><br>
+              evento.</strong>
           </p>
           <span class="detail-card__time"><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>05:30 PM</span>
           <div class="detail-card__btn">
             <a href="#map-section" class="btn btn--primary">
               <i class="fa-solid fa-map-location-dot"></i> Cómo Llegar
             </a>
+          </div>
+        </div>
+
+        <!-- Card 2: Lluvia de Sobres -->
+        <div class="detail-card detail-card--minimal reveal reveal-center" data-delay="150">
+          <div class="detail-card__minimal-content">
+            <div class="detail-card__icon--no-circle">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <span class="detail-card__minimal-label">Tipo de Regalo</span>
+            <h3 class="detail-card__title detail-card__title--large">Lluvia de Sobres</h3>
           </div>
         </div>
       </div>
@@ -302,12 +567,25 @@
       <h2 class="section__title reveal">Ubicación del Evento</h2>
 
       <div class="map__wrapper reveal reveal--scale">
-        <!-- Interactive Google Maps Frame targeting Autopista Norte KM 19, Chía, Cundinamarca -->
+        <!-- Interactive Google Maps Frame targeting Hacienda Casa de Josue, Calle 235 #80-02, Suba, Bogotá -->
         <iframe
-          src="https://maps.google.com/maps?q=Autopista%20Norte%20km%2019,%20Ch%C3%ADa,%20Cundinamarca&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          src="https://maps.google.com/maps?q=Hacienda%20Casa%20de%20Josue%20Calle%20235%20%2380-02%20Suba%20Bogota&t=&z=16&ie=UTF8&iwloc=&output=embed"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           title="Google Map - Ubicación de los XV de María Ángeles Caro">
         </iframe>
+      </div>
+
+      <div class="map__actions reveal"
+        style="text-align: center; margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <a href="https://maps.google.com/?q=Hacienda+Casa+de+Josue+Calle+235+%2380-02+Suba+Bogota" target="_blank"
+          rel="noopener noreferrer" class="btn btn--primary">
+          <i class="fa-solid fa-map-location-dot"></i> Abrir en Google Maps
+        </a>
+        <a href="https://waze.com/ul?q=Hacienda+Casa+de+Josue+Calle+235+%2380-02+Suba+Bogota" target="_blank"
+          rel="noopener noreferrer" class="btn btn--outline"
+          style="display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fa-brands fa-waze"></i> Abrir en Waze
+        </a>
       </div>
     </div>
   </section>
@@ -360,13 +638,11 @@
             data-color="Azul Elegante"></div>
           <div class="dresscode__color-swatch dresscode__color-swatch--tooltip" style="background-color: #9e7e12;"
             data-color="Dorado Noche"></div>
-          <div class="dresscode__color-swatch dresscode__color-swatch--tooltip" style="background-color: #FFF5E6;"
-            data-color="Champagne"></div>
         </div>
 
         <p class="dresscode__note dresscode__note--warn">
           <i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px;"></i>Nota: En honor a la quinceañera,
-          por favor evitar el uso de vestidos blancos o marfil.
+          por favor evitar el uso de vestidos azules o dorados en todas las tonalidades, opcional llevar tenis.
         </p>
       </div>
     </div>
@@ -439,7 +715,7 @@
   </button>
 
   <!-- Main JavaScript File -->
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 
 </html>

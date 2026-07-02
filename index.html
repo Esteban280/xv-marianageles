@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mis XV Años — María Ángeles Caro</title>
-  
+
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Te invito a celebrar conmigo mis quince años. Conoce los detalles del evento, ubicación, itinerario y confirma tu asistencia.">
+  <meta name="description"
+    content="Te invito a celebrar conmigo mis quince años. Conoce los detalles del evento, ubicación, itinerario y confirma tu asistencia.">
   <meta name="author" content="María Ángeles Caro">
   <meta property="og:title" content="Mis XV Años — María Ángeles Caro">
-  <meta property="og:description" content="Acompáñame a celebrar este día tan especial. Conoce toda la información de la ceremonia y recepción aquí.">
+  <meta property="og:description"
+    content="Acompáñame a celebrar este día tan especial. Conoce toda la información de la ceremonia y recepción aquí.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/quinceanera.jpg">
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/quinceanera.jpg">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
 
   <!-- FontAwesome Icons for premium visual badges -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
@@ -41,7 +47,7 @@
       justify-content: center;
       font-family: 'Inter', sans-serif;
     }
-    
+
     .envelope-overlay {
       position: fixed;
       inset: 0;
@@ -83,8 +89,8 @@
       background: #FFF8F0;
       border-radius: 16px;
       padding: 40px 30px;
-      box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.5), 
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
         0 0 0 1px rgba(212, 175, 55, 0.2),
         inset 0 0 40px rgba(212, 175, 55, 0.05);
       border: 2px solid #D4AF37;
@@ -96,66 +102,83 @@
       box-sizing: border-box;
     }
 
+    .envelope-card__header p {
+      font-size: 3.2rem !important;
+      margin-bottom: 20px !important;
+    }
+
     @media (max-width: 480px) {
       .envelope-overlay {
         padding: 10px !important;
       }
+
       .envelope-card {
         padding: 24px 20px !important;
       }
+
       .envelope-card__header h2 {
         font-size: 1.4rem !important;
       }
+
       .envelope-card__header p {
-        font-size: 1.5rem !important;
+        font-size: 2.2rem !important;
         margin-bottom: 12px !important;
       }
+
       .envelope-card__recipient {
         margin-bottom: 10px !important;
         padding-bottom: 10px !important;
       }
+
       .envelope-card__teaser {
         font-size: 0.95rem !important;
         margin-bottom: 16px !important;
         line-height: 1.4 !important;
       }
+
       .btn-seal {
         gap: 8px !important;
       }
+
       .btn-seal__wax {
         width: 55px !important;
         height: 55px !important;
       }
+
       .btn-seal__wax::before {
         font-size: 1.3rem !important;
       }
     }
   </style>
 </head>
+
 <body>
 
   <div id="envelope-overlay" class="envelope-overlay">
     <!-- Particles Canvas behind the card -->
     <canvas id="envelope-particles"></canvas>
-    
+
     <div class="envelope-container">
       <div class="envelope-card">
         <div class="envelope-card__header">
           <div class="envelope-card__seal-crown">✦</div>
           <!-- Golden Ornament decoration -->
-          <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 120px; margin: 0 auto 12px; opacity: 0.85; filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4));">
-            <path d="M50 0C55 10 75 10 100 10M50 0C45 10 25 10 0 10M50 0V20" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="50" cy="10" r="3" fill="#D4AF37"/>
-            <circle cx="30" cy="10" r="1.5" fill="#D4AF37"/>
-            <circle cx="70" cy="10" r="1.5" fill="#D4AF37"/>
+          <svg viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="width: 120px; margin: 0 auto 12px; opacity: 0.85; filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4));">
+            <path d="M50 0C55 10 75 10 100 10M50 0C45 10 25 10 0 10M50 0V20" stroke="#D4AF37" stroke-width="1.5"
+              stroke-linecap="round" />
+            <circle cx="50" cy="10" r="3" fill="#D4AF37" />
+            <circle cx="30" cy="10" r="1.5" fill="#D4AF37" />
+            <circle cx="70" cy="10" r="1.5" fill="#D4AF37" />
           </svg>
-          <h2>Boletín Especial</h2>
-          <p>La Sociedad de Bogotá</p>
+          <p>Boletín Especial</p>
+          <!----p>La Sociedad de Bogotá</p--->
         </div>
         <div class="envelope-card__body">
           <p class="envelope-card__recipient">Para: <strong>Distinguidos Invitados</strong></p>
-          <p class="envelope-card__teaser">Ha llegado una carta de la alta sociedad sobre los XV años de María Ángeles Caro...</p>
-          
+          <p class="envelope-card__teaser">Ha llegado una carta de la alta sociedad sobre los XV años de María Ángeles
+            Caro Trujillo</p>
+
           <button id="open-envelope-btn" class="btn-seal">
             <span class="btn-seal__wax"></span>
             <span class="btn-seal__text">Abrir Carta</span>
@@ -166,6 +189,7 @@
   </div>
 
   <!-- Landing Page Navigation JavaScript -->
-  <script src="js/envelope.js"></script>
+  <script src="js/envelope.js?v=2"></script>
 </body>
+
 </html>
