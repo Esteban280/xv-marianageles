@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hidePreloader = () => {
       const elapsed = performance.now() - startTime;
-      const minDuration = 2000; // Enforce minimum preloader duration of 2 seconds
+      const minDuration = 0; // Removed artificial 2-second delay to load instantly when ready
       const delay = Math.max(0, minDuration - elapsed);
 
       setTimeout(() => {
